@@ -47,7 +47,7 @@ def switch_schema(task, kwargs, **kw):
     if schema == get_public_schema_name():
         return
 
-    tenant = get_tenant_model().objects.get(schema_name=schema)
+    tenant = get_tenant_model().objects.filter(schema_name=schema).last()
     connection.set_tenant(tenant, include_public=True)
 
 
